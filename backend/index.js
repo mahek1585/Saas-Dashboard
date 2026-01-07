@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -5,9 +7,15 @@ const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const authRoutes = require("./routes/auth");
+
 // Middleware
+app.use(express.json());
+
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use("/api/auth", authRoutes);
 
 // Test route
 app.get("/", (req, res) => {
