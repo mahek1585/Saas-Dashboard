@@ -1,24 +1,11 @@
-// const express = require("express");
-// const router = express.Router();
-
-// const authController = require("../controllers/authController");
-// const verifyToken = require("../middleware/authMiddleware");
-
-// router.post("/login", authController.login);
-// router.post("/register", authController.register);
-
-// router.get("/protected", verifyToken, (req, res) => {
-//   res.json({ message: "You are authorized!", user: req.user });
-// });
-
-// module.exports = router;
-
-
 const express = require("express");
 const router = express.Router();
+const { register, login } = require("../controllers/authcontroller");
 
-const { registerUser } = require("../controllers/authController");
+// POST register
+router.post("/register", register);
 
-router.post("/register", registerUser);
+// POST login
+router.post("/login", login);
 
 module.exports = router;
