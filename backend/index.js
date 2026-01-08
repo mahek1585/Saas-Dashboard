@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 const authRoutes = require("./routes/auth");
 const dashboardRoutes = require("./routes/dashboard");
+const subscriptionRoutes = require("./routes/subscriptionRoutes");
 
 // Middleware
 app.use(express.json());
@@ -19,6 +20,8 @@ app.use(bodyParser.json());
 app.use("/api/auth", authRoutes);
 
 app.use("/api/dashboard", dashboardRoutes);
+
+app.use("/api/subscription", subscriptionRoutes);
 
 
 // Test route
