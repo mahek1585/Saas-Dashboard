@@ -1,7 +1,14 @@
-const express = require("express");
-const router = express.Router();
-const { getDashboardData } = require("../controllers/dashboardController");
+export const loginUser = async (email, password) => {
+  const res = await axios.post("http://localhost:5000/api/auth/login", {
+    email,
+    password,
+  });
 
-router.get("/", getDashboardData);
+  if (res.data.token) {
+    // Token localStorage me save karo
+    localStorage.setItem("token", res.data.token);
+    localStorage.setItem("user", JSON.stringify(res.data.user));
+  }
 
-module.exports = router;
+  return res.data;
+};
