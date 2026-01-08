@@ -8,6 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const authRoutes = require("./routes/auth");
+const dashboardRoutes = require("./routes/dashboard");
 
 // Middleware
 app.use(express.json());
@@ -16,6 +17,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/api/auth", authRoutes);
+
+app.use("/api/dashboard", dashboardRoutes);
+
 
 // Test route
 app.get("/", (req, res) => {
