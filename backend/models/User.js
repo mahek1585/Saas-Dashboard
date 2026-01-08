@@ -1,22 +1,26 @@
-// TEMP in-memory user store (later DB)
-const users = [];
+const mongoose = require("mongoose");
 
-class User {
-  constructor({ name, email, password }) {
-    this.id = Date.now();
-    this.name = name;
-    this.email = email;
-    this.password = password;
-  }
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
 
-  static findOne({ email }) {
-    return users.find((u) => u.email === email);
-  }
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+    },
 
-  save() {
-    users.push(this);
-    return this;
-  }
-}
+    password: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = User;
+module.exports = mongoose.model("User", userSchema);
